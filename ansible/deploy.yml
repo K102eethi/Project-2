@@ -1,14 +1,7 @@
 - name: Deploy WAR to Tomcat
-  hosts: localhost
-  connection: local
+  hosts: tomcat
   tasks:
-    - name: Copy WAR file to Tomcat webapps
+    - name: Copy WAR file
       copy:
         src: /var/lib/jenkins/workspace/Project-2/target/project-2-1.0.0.war
         dest: /home/ec2-user/tomcat/webapps/demo.war
-        owner: ec2-user
-        group: ec2-user
-        mode: '0644'
-
-    - name: Restart Tomcat
-      shell: /home/ec2-user/tomcat/bin/shutdown.sh && /home/ec2-user/tomcat/bin/startup.sh
