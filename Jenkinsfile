@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven_3.8.7' // Make sure this matches the name configured in Jenkins > Global Tool Configuration
+        maven 'Maven_3.8.7'
     }
 
     environment {
-        MAVEN_HOME = '/opt/maven'
-        PATH = "$PATH:/opt/maven/bin"
+        MAVEN_HOME = tool 'Maven_3.8.7'
+        PATH = "${env.PATH}:${env.MAVEN_HOME}/bin"
     }
 
     stages {
@@ -23,6 +23,15 @@ pipeline {
                 echo 'Deploying with Ansible...'
                 sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Please check the logs.'
         }
     }
 }
