@@ -1,12 +1,17 @@
 - name: Deploy WAR to Tomcat
   hosts: tomcat
+  become: yes
 
   tasks:
     - name: Copy WAR file
       copy:
         src: "/var/lib/jenkins/workspace/POC-2 Workflow/target/project-2-1.0.0.war"
         dest: /opt/tomcat/webapps/demo.war
+        owner: tomcat
+        group: tomcat
         mode: '0644'
 
     - name: Restart Tomcat
-      shell: /opt/tomcat/bin/shutdown.sh && /opt/tomcat/bin/startup.sh
+      systemd:
+        name: tomcat
+        state: restarted
