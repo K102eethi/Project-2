@@ -4,4 +4,4 @@
     - name: Copy WAR file
       copy:
         src: /var/lib/jenkins/workspace/POC-2 Workflow/target/project-2-1.0.0.war
-        dest: /home/ec2-user/tomcat/webapps/demo.war
+        dest: /opt/tomcat/webapps/demo.war
