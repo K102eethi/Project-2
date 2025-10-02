@@ -2,6 +2,6 @@
 <html>
 <head><title>Hello World</title></head>
 <body>
-<h2>Hello,Keerthi! Your CI/CD pipeline works 🎉</h2>
+<h2>Hello,Keerthi!CI/CD pipeline works 🎉</h2>
 </body>
 </html>
